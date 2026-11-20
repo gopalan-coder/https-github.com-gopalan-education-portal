@@ -24,10 +24,55 @@ document.addEventListener('DOMContentLoaded', () => {
     if (homeLink) homeLink.classList.add('active');
 });
 
-// ---- Language handling (placeholder) ----
+// ---- Language handling (simple dictionary) ----
+const translations = {
+    en: {
+        homeTitle: "Welcome",
+        homeDesc: "Providing quality education to every child, even in remote villages.",
+        aboutTitle: "About Us",
+        aboutDesc: "The portal is an official portal of the Education Department, aiming to support schools that lack basic facilities.",
+        complaintTitle: "Register a Complaint",
+        schoolNameLabel: "School Name:",
+        issueLabel: "Issue Description:",
+        submitBtn: "Submit",
+        contactTitle: "Contact",
+        contactInfo: "Email: info@education.gov"
+    },
+    ta: {
+        homeTitle: "வரவேற்பு",
+        homeDesc: "தொலைவுள்ள கிராமங்களிலும் ஒவ்வொரு குழந்தைக்கும் தரமான கல்வியை வழங்குவது.",
+        aboutTitle: "எங்களைப் பற்றி",
+        aboutDesc: "இந்த போர்டல் கல்வி துறை அதிகாரப்பூர்வ போர்டல், அடிப்படை வசதிகள் இல்லாத பள்ளிகளை ஆதரிக்கிறது.",
+        complaintTitle: "புலன் பதிவு செய்யவும்",
+        schoolNameLabel: "பள்ளி பெயர்:",
+        issueLabel: "சிக்கல் விவரம்:",
+        submitBtn: "சமர்ப்பிக்க",
+        contactTitle: "தொடர்பு",
+        contactInfo: "மின்னஞ்சல்: info@education.gov"
+    },
+    hi: {
+        homeTitle: "स्वागत",
+        homeDesc: "दूरस्थ गाँवों में भी हर बच्चे को गुणवत्तापूर्ण शिक्षा प्रदान करना।",
+        aboutTitle: "हमारे बारे में",
+        aboutDesc: "यह पोर्टल शिक्षा विभाग का आधिकारिक पोर्टल है, वह स्कूलों का समर्थन करता है जिनके पास बुनियादी सुविधाएँ नहीं हैं।",
+        complaintTitle: "शिकायत दर्ज करें",
+        schoolNameLabel: "स्कूल का नाम:",
+        issueLabel: "समस्या विवरण:",
+        submitBtn: "जमा करें",
+        contactTitle: "संपर्क",
+        contactInfo: "ईमेल: info@education.gov"
+    }
+};
+
 function setLanguage(lang) {
-    console.log('Language selected:', lang);
-    // TODO: load language dictionary and replace text nodes
+    const dict = translations[lang] || translations.en;
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (dict[key]) {
+            el.textContent = dict[key];
+        }
+    });
+    console.log('Language set to', lang);
 }
 
 // ---- Voice input ----
