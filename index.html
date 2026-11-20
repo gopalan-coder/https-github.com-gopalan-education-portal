@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Education Portal</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Education Portal</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#complaint">Register Complaint</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="lang-select">
+            <label for="language">Language:</label>
+            <select id="language" onchange="setLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="ta">Tamil</option>
+                <option value="hi">Hindi</option>
+                <!-- Add more languages as needed -->
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2 data-key="homeTitle">Welcome</h2>
+            <p data-key="homeDesc">Providing quality education to every child, even in remote villages.</p>
+        </section>
+
+        <section id="about">
+            <h2 data-key="aboutTitle">About Us</h2>
+            <p data-key="aboutDesc">The portal is an official portal of the Education Department, aiming to support schools that lack basic facilities.</p>
+        </section>
+
+        <section id="complaint">
+            <h2 data-key="complaintTitle">Register a Complaint</h2>
+            <form id="complaintForm">
+                <label for="schoolName" data-key="schoolNameLabel">School Name:</label>
+                <input type="text" id="schoolName" name="schoolName" required />
+
+                <label for="issue" data-key="issueLabel">Issue Description:</label>
+                <textarea id="issue" name="issue" rows="4" required></textarea>
+
+                <button type="button" id="voiceBtn" onclick="startVoiceInput()">🎤 Voice Input</button>
+
+                <button type="submit" data-key="submitBtn">Submit</button>
+            </form>
+            <div id="result"></div>
+        </section>
+
+        <section id="contact">
+            <h2 data-key="contactTitle">Contact</h2>
+            <p data-key="contactInfo">Email: info@education.gov</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Education Department</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
