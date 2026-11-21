@@ -4,66 +4,252 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Education Portal</title>
+    <title>Village School Facility & Complaint Portal | SDG 4</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <header>
-        <h1>Education Portal</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#complaint">Register Complaint</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="lang-select">
-            <label for="language">Language:</label>
-            <select id="language" onchange="setLanguage(this.value)">
-                <option value="en" selected>English</option>
-                <option value="ta">Tamil</option>
-                <option value="hi">Hindi</option>
-                <!-- Add more languages as needed -->
-            </select>
+        <div class="header-brand">
+            <div class="sdg-badge">SDG 4 · QUALITY EDUCATION</div>
+            <h1 data-key="siteTitle">Village School Grievance Portal</h1>
+            <p class="tagline" data-key="siteTagline">Direct Government Reporting for Rural Schools</p>
+        </div>
+        <div class="header-controls">
+            <div class="lang-select">
+                <label for="language" data-key="langLabel">Language / மொழி / भाषा:</label>
+                <select id="language" onchange="setLanguage(this.value)">
+                    <option value="en" selected>English</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                </select>
+            </div>
         </div>
     </header>
 
+    <nav>
+        <ul>
+            <li><a href="#home" class="active" data-key="navHome">Home</a></li>
+            <li><a href="#checklist" data-key="navChecklist">Facility Checklist</a></li>
+            <li><a href="#complaint" data-key="navComplaint">File Complaint</a></li>
+            <li><a href="#track" data-key="navTrack">Track Status</a></li>
+            <li><a href="#about" data-key="navAbout">About Portal</a></li>
+        </ul>
+    </nav>
+
     <main>
+        <!-- HOME SECTION -->
         <section id="home">
-            <h2 data-key="homeTitle">Welcome</h2>
-            <p data-key="homeDesc">Providing quality education to every child, even in remote villages.</p>
+            <div class="hero-card">
+                <span class="hero-tag" data-key="heroTag">Direct Citizen Voice</span>
+                <h2 data-key="homeTitle">Is Your Village School Ready to Teach?</h2>
+                <p data-key="homeDesc">Ensuring every child in every village gets safe classrooms, clean water, proper toilets, and qualified teachers. Submit complaints directly to the official education department without middlemen.</p>
+                <div class="quick-actions">
+                    <a href="#complaint" class="btn btn-primary" data-key="btnFileNow">📝 File a School Complaint</a>
+                    <a href="#track" class="btn btn-secondary" data-key="btnTrackNow">🔍 Track Existing Complaint</a>
+                </div>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3 data-key="step1Title">Check</h3>
+                    <p data-key="step1Desc">Review the 8 essential facilities every school must provide.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3 data-key="step2Title">Report</h3>
+                    <p data-key="step2Desc">Select missing facilities, add voice notes, and attach photo proof.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3 data-key="step3Title">Track</h3>
+                    <p data-key="step3Desc">Get an official complaint number and follow action until resolution.</p>
+                </div>
+            </div>
         </section>
 
-        <section id="about">
-            <h2 data-key="aboutTitle">About Us</h2>
-            <p data-key="aboutDesc">The portal is an official portal of the Education Department, aiming to support schools that lack basic facilities.</p>
+        <!-- FACILITY CHECKLIST SECTION -->
+        <section id="checklist" style="display:none;">
+            <h2 data-key="checklistTitle">Mandatory School Facilities Checklist</h2>
+            <p class="section-intro" data-key="checklistIntro">According to RTE and SDG 4 standards, every school must provide these 8 basic facilities. If any are missing, report immediately.</p>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <span class="facility-icon">🏫</span>
+                    <h4 data-key="fac1">Enough classrooms and teachers</h4>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">💧</span>
+                    <h4 data-key="fac2">Clean drinking water</h4>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🚻</span>
+                    <h4 data-key="fac3">Separate toilets for girls and boys</h4>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">💡</span>
+                    <h4 data-key="fac4">Electricity, desks and books</h4>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🧱</span>
+                    <h4 data-key="fac5">Safe building and boundary wall</h4>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">⚽</span>
+                    <h4 data-key="fac6">Playground & sports equipment</h4>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">♿</span>
+                    <h4 data-key="fac7">Access for children with disabilities</h4>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🍲</span>
+                    <h4 data-key="fac8">Mid-day meal programme</h4>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <p data-key="ctaChecklist">Found a school missing one or more of these?</p>
+                <a href="#complaint" class="btn btn-primary" data-key="btnGoReport">Go to Complaint Form &rarr;</a>
+            </div>
         </section>
 
-        <section id="complaint">
-            <h2 data-key="complaintTitle">Register a Complaint</h2>
+        <!-- COMPLAINT FORM SECTION -->
+        <section id="complaint" style="display:none;">
+            <div class="form-header">
+                <h2 data-key="complaintTitle">Register a School Complaint</h2>
+                <p data-key="complaintSubtitle">No agent or middleman: you submit directly to the official education authority.</p>
+            </div>
+
             <form id="complaintForm">
-                <label for="schoolName" data-key="schoolNameLabel">School Name:</label>
-                <input type="text" id="schoolName" name="schoolName" required />
+                <!-- Location Details -->
+                <div class="form-group">
+                    <label for="schoolName" data-key="schoolNameLabel">School Name *</label>
+                    <input type="text" id="schoolName" name="schoolName" placeholder="e.g. Govt Primary School, Perur" required />
+                </div>
 
-                <label for="issue" data-key="issueLabel">Issue Description:</label>
-                <textarea id="issue" name="issue" rows="4" required></textarea>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="villageName" data-key="villageLabel">Village / Town *</label>
+                        <input type="text" id="villageName" name="villageName" placeholder="e.g. Perur" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="districtName" data-key="districtLabel">District *</label>
+                        <input type="text" id="districtName" name="districtName" placeholder="e.g. Coimbatore" required />
+                    </div>
+                </div>
 
-                <button type="button" id="voiceBtn" onclick="startVoiceInput()">🎤 Voice Input</button>
+                <!-- Missing Facilities Checkboxes -->
+                <div class="form-group">
+                    <label data-key="missingFacLabel">Missing or Broken Facilities (Tick all that apply) *</label>
+                    <div class="checkbox-grid">
+                        <label class="check-item"><input type="checkbox" name="facility" value="Classrooms & Teachers" /> <span data-key="fac1">Enough classrooms and teachers</span></label>
+                        <label class="check-item"><input type="checkbox" name="facility" value="Clean Drinking Water" /> <span data-key="fac2">Clean drinking water</span></label>
+                        <label class="check-item"><input type="checkbox" name="facility" value="Separate Toilets" /> <span data-key="fac3">Separate toilets for girls and boys</span></label>
+                        <label class="check-item"><input type="checkbox" name="facility" value="Electricity & Desks" /> <span data-key="fac4">Electricity, desks and books</span></label>
+                        <label class="check-item"><input type="checkbox" name="facility" value="Safe Building" /> <span data-key="fac5">Safe building and boundary wall</span></label>
+                        <label class="check-item"><input type="checkbox" name="facility" value="Playground" /> <span data-key="fac6">Playground & sports equipment</span></label>
+                        <label class="check-item"><input type="checkbox" name="facility" value="Disability Access" /> <span data-key="fac7">Access for children with disabilities</span></label>
+                        <label class="check-item"><input type="checkbox" name="facility" value="Mid-day Meal" /> <span data-key="fac8">Mid-day meal programme</span></label>
+                    </div>
+                </div>
 
-                <button type="submit" data-key="submitBtn">Submit</button>
+                <!-- Issue Description with Voice Input -->
+                <div class="form-group">
+                    <div class="label-with-voice">
+                        <label for="issue" data-key="issueLabel">Short Description of the Problem *</label>
+                        <button type="button" id="voiceBtn" class="btn-voice" onclick="startVoiceInput()">
+                            <span class="mic-icon">🎤</span> <span data-key="voiceBtnText">Voice Record</span>
+                        </button>
+                    </div>
+                    <textarea id="issue" name="issue" rows="4" placeholder="Describe the issue in detail or click 'Voice Record' to speak in Tamil, English, or Hindi..." required></textarea>
+                    <p id="voiceStatus" class="voice-status"></p>
+                </div>
+
+                <!-- PHOTO PROOF UPLOAD -->
+                <div class="form-group photo-upload-group">
+                    <label for="photoInput" data-key="photoLabel">📸 Photo as Proof (Optional but Highly Recommended)</label>
+                    <p class="field-hint" data-key="photoHint">Take a photo of the broken facility or select an image from your phone/computer.</p>
+                    
+                    <div class="upload-dropzone" id="dropzone" onclick="document.getElementById('photoInput').click()">
+                        <span class="upload-icon">📷</span>
+                        <p class="dropzone-text" data-key="dropzoneText">Click or Tap here to Take Photo / Upload Image</p>
+                        <span class="file-limits">Supports JPG, PNG, WEBP (Max 10MB)</span>
+                        <input type="file" id="photoInput" name="photo" accept="image/*" capture="environment" style="display:none;" onchange="handlePhotoSelect(this)" />
+                    </div>
+
+                    <!-- Photo Preview Box -->
+                    <div id="photoPreviewContainer" class="photo-preview-container" style="display:none;">
+                        <div class="preview-header">
+                            <span data-key="previewLabel">Attached Photo Proof:</span>
+                            <button type="button" class="btn-remove-photo" onclick="removePhoto()" data-key="btnRemovePhoto">✖ Remove Photo</button>
+                        </div>
+                        <img id="photoPreview" src="" alt="Proof Preview" />
+                        <p id="photoFileName" class="photo-filename"></p>
+                    </div>
+                </div>
+
+                <!-- Contact & Anonymous Option -->
+                <div class="form-group">
+                    <label for="contactInfo" data-key="contactPhoneLabel">Contact Phone / WhatsApp (Optional for status updates)</label>
+                    <input type="tel" id="contactInfo" name="contactInfo" placeholder="e.g. 9876543210" />
+                </div>
+
+                <div class="form-group anonymous-group">
+                    <label class="check-item checkbox-anonymous">
+                        <input type="checkbox" id="anonymousCheck" name="anonymous" />
+                        <span data-key="anonymousLabel">🔒 Submit anonymously for safety (your identity will be protected)</span>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-submit" id="submitBtn" data-key="submitBtn">
+                    🚀 Submit Complaint Directly to Education Department
+                </button>
             </form>
-            <div id="result"></div>
+
+            <!-- Result Card -->
+            <div id="result" class="result-box" style="display:none;"></div>
         </section>
 
-        <section id="contact">
-            <h2 data-key="contactTitle">Contact</h2>
-            <p data-key="contactInfo">Email: info@education.gov</p>
+        <!-- TRACK COMPLAINT SECTION -->
+        <section id="track" style="display:none;">
+            <h2 data-key="trackTitle">Track Complaint Status</h2>
+            <p data-key="trackDesc">Enter your complaint reference number to check live inspection and resolution status.</p>
+
+            <div class="track-form-box">
+                <div class="track-input-row">
+                    <input type="text" id="trackInput" placeholder="e.g. TN-EDU-2026-4891" />
+                    <button type="button" class="btn btn-primary" onclick="trackComplaint()" data-key="btnCheckStatus">Check Status</button>
+                </div>
+            </div>
+
+            <div id="trackResult" class="track-result-card" style="display:none;"></div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" style="display:none;">
+            <h2 data-key="aboutTitle">About This Portal</h2>
+            <div class="about-card">
+                <p data-key="aboutDesc1">This portal supports <strong>United Nations SDG 4 (Quality Education)</strong> by giving parents, teachers, and villagers a direct digital voice to ensure government schools have basic human facilities.</p>
+                <h4 data-key="aboutWhyTitle">Why Direct Reporting?</h4>
+                <ul>
+                    <li data-key="aboutWhy1"><strong>No middlemen:</strong> Complaints reach education directors without getting blocked or altered.</li>
+                    <li data-key="aboutWhy2"><strong>Photographic proof:</strong> Visual evidence ensures authorities cannot ignore infrastructural negligence.</li>
+                    <li data-key="aboutWhy3"><strong>Full transparency:</strong> Every complaint gets a permanent tracking number.</li>
+                    <li data-key="aboutWhy4"><strong>Safety guaranteed:</strong> Anonymous reporting protects villagers from local harassment.</li>
+                </ul>
+                <div class="contact-details">
+                    <h4 data-key="contactTitle">Official Education Grievance Desk</h4>
+                    <p data-key="contactInfo1">Email: grievance@schooleducation.gov.in</p>
+                    <p data-key="contactInfo2">Toll-Free Helpline: 14417 (Education Helpdesk)</p>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Education Department</p>
+        <p>&copy; 2026 Education Department · Citizen Grievance Redressal Portal · SDG 4 Quality Education</p>
     </footer>
 
     <script src="script.js"></script>
