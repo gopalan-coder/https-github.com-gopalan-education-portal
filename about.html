@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Village School Grievance Portal | SDG 4</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <div class="header-brand">
+            <div class="sdg-badge">SDG 4 · QUALITY EDUCATION</div>
+            <h1 data-key="siteTitle">Village School Grievance Portal</h1>
+            <p class="tagline" data-key="siteTagline">Direct Government Reporting for Rural Schools</p>
+        </div>
+        <div class="header-controls">
+            <div class="lang-select">
+                <label for="language" data-key="langLabel">Language / மொழி / भाषा:</label>
+                <select id="language" onchange="setLanguage(this.value)">
+                    <option value="en" selected>English</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" data-key="navHome">Home</a></li>
+            <li><a href="checklist.html" data-key="navChecklist">Facility Checklist</a></li>
+            <li><a href="complaint.html" data-key="navComplaint">File Complaint</a></li>
+            <li><a href="track.html" data-key="navTrack">Track Status</a></li>
+            <li><a href="about.html" class="active" data-key="navAbout">About Portal</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- ABOUT PAGE -->
+        <section id="about">
+            <h2 data-key="aboutTitle">About This Portal</h2>
+            <div class="about-card">
+                <p data-key="aboutDesc1">This portal supports <strong>United Nations SDG 4 (Quality Education)</strong> by giving parents, teachers, and villagers a direct digital voice to ensure government schools have basic human facilities.</p>
+                <h4 data-key="aboutWhyTitle">Why Direct Reporting?</h4>
+                <ul>
+                    <li data-key="aboutWhy1"><strong>No middlemen:</strong> Complaints reach education directors without getting blocked or altered.</li>
+                    <li data-key="aboutWhy2"><strong>Photographic proof:</strong> Visual evidence ensures authorities cannot ignore infrastructural negligence.</li>
+                    <li data-key="aboutWhy3"><strong>Full transparency:</strong> Every complaint gets a permanent tracking number.</li>
+                    <li data-key="aboutWhy4"><strong>Safety guaranteed:</strong> Anonymous reporting protects villagers from local harassment.</li>
+                </ul>
+                <div class="contact-details">
+                    <h4 data-key="contactTitle">Official Education Grievance Desk</h4>
+                    <p data-key="contactInfo1">Email: grievance@schooleducation.gov.in</p>
+                    <p data-key="contactInfo2">Toll-Free Helpline: 14417 (Education Helpdesk)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Education Department · Citizen Grievance Redressal Portal · SDG 4 Quality Education</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

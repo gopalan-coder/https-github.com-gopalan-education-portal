@@ -1,4 +1,4 @@
-// script.js - Village School Facility & Grievance Portal
+// script.js - Village School Facility & Grievance Portal (Multi-page Edition)
 
 // Current uploaded photo data (base64)
 let currentPhotoBase64 = null;
@@ -22,11 +22,11 @@ const translations = {
         btnFileNow: "📝 File a School Complaint",
         btnTrackNow: "🔍 Track Existing Complaint",
 
-        step1Title: "Check",
+        step1Title: "1. Check",
         step1Desc: "Review the 8 essential facilities every school must provide.",
-        step2Title: "Report",
+        step2Title: "2. Report",
         step2Desc: "Select missing facilities, add voice notes, and attach photo proof.",
-        step3Title: "Track",
+        step3Title: "3. Track",
         step3Desc: "Get an official complaint number and follow action until resolution.",
 
         checklistTitle: "Mandatory School Facilities Checklist",
@@ -252,47 +252,7 @@ function setLanguage(lang) {
         if (issueInput) issueInput.placeholder = "Describe the issue in detail or click 'Voice Record' to speak...";
         if (trackInput) trackInput.placeholder = "e.g. TN-EDU-2026-4891";
     }
-
-    console.log("Language switched to:", lang);
 }
-
-// ---- Navigation Handling ----
-function showSection(sectionId) {
-    document.querySelectorAll("main section").forEach(sec => {
-        sec.style.display = "none";
-    });
-
-    const targetSec = document.getElementById(sectionId);
-    if (targetSec) {
-        targetSec.style.display = "block";
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    document.querySelectorAll("nav a").forEach(link => {
-        if (link.getAttribute("href") === "#" + sectionId) {
-            link.classList.add("active");
-        } else {
-            link.classList.remove("active");
-        }
-    });
-}
-
-document.querySelectorAll("nav a").forEach(link => {
-    link.addEventListener("click", e => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href").substring(1);
-        showSection(targetId);
-    });
-});
-
-// Quick action buttons
-document.querySelectorAll(".quick-actions a, .cta-box a").forEach(link => {
-    link.addEventListener("click", e => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href").substring(1);
-        showSection(targetId);
-    });
-});
 
 // ---- Photo Upload & Preview ----
 function handlePhotoSelect(input) {
@@ -319,9 +279,9 @@ function handlePhotoSelect(input) {
         const previewContainer = document.getElementById("photoPreviewContainer");
         const filenameText = document.getElementById("photoFileName");
 
-        previewImg.src = currentPhotoBase64;
-        filenameText.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
-        previewContainer.style.display = "block";
+        if (previewImg) previewImg.src = currentPhotoBase64;
+        if (filenameText) filenameText.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        if (previewContainer) previewContainer.style.display = "block";
     };
     reader.readAsDataURL(file);
 }
@@ -353,8 +313,10 @@ if (dropzone) {
         dropzone.style.backgroundColor = "#ffffff";
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             const input = document.getElementById("photoInput");
-            input.files = e.dataTransfer.files;
-            handlePhotoSelect(input);
+            if (input) {
+                input.files = e.dataTransfer.files;
+                handlePhotoSelect(input);
+            }
         }
     });
 }
@@ -366,7 +328,7 @@ let recognition = null;
 function startVoiceInput() {
     const voiceBtn = document.getElementById("voiceBtn");
     const voiceStatus = document.getElementById("voiceStatus");
-    const lang = document.getElementById("language").value;
+    const lang = document.getElementById("language") ? document.getElementById("language").value : "en";
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -378,8 +340,8 @@ function startVoiceInput() {
     if (isRecording && recognition) {
         recognition.stop();
         isRecording = false;
-        voiceBtn.classList.remove("recording");
-        voiceStatus.textContent = "";
+        if (voiceBtn) voiceBtn.classList.remove("recording");
+        if (voiceStatus) voiceStatus.textContent = "";
         return;
     }
 
@@ -387,7 +349,6 @@ function startVoiceInput() {
     recognition.continuous = false;
     recognition.interimResults = false;
 
-    // Set recognition language
     if (lang === "ta") {
         recognition.lang = "ta-IN";
     } else if (lang === "hi") {
@@ -398,31 +359,35 @@ function startVoiceInput() {
 
     recognition.onstart = function() {
         isRecording = true;
-        voiceBtn.classList.add("recording");
-        voiceStatus.textContent = "🎙️ Listening... Speak into your microphone now.";
+        if (voiceBtn) voiceBtn.classList.add("recording");
+        if (voiceStatus) voiceStatus.textContent = "🎙️ Listening... Speak into your microphone now.";
     };
 
     recognition.onresult = function(event) {
         const transcript = event.results[0][0].transcript;
         const issueBox = document.getElementById("issue");
-        if (issueBox.value.trim().length > 0) {
-            issueBox.value += " " + transcript;
-        } else {
-            issueBox.value = transcript;
+        if (issueBox) {
+            if (issueBox.value.trim().length > 0) {
+                issueBox.value += " " + transcript;
+            } else {
+                issueBox.value = transcript;
+            }
         }
-        voiceStatus.textContent = "✅ Voice recorded successfully!";
-        setTimeout(() => { voiceStatus.textContent = ""; }, 4000);
+        if (voiceStatus) {
+            voiceStatus.textContent = "✅ Voice recorded successfully!";
+            setTimeout(() => { voiceStatus.textContent = ""; }, 4000);
+        }
     };
 
     recognition.onerror = function(event) {
         console.error("Speech recognition error:", event.error);
-        voiceStatus.textContent = "⚠️ Could not record voice (" + event.error + "). Please try typing.";
-        voiceBtn.classList.remove("recording");
+        if (voiceStatus) voiceStatus.textContent = "⚠️ Could not record voice (" + event.error + "). Please try typing.";
+        if (voiceBtn) voiceBtn.classList.remove("recording");
         isRecording = false;
     };
 
     recognition.onend = function() {
-        voiceBtn.classList.remove("recording");
+        if (voiceBtn) voiceBtn.classList.remove("recording");
         isRecording = false;
     };
 
@@ -451,122 +416,114 @@ function saveStoredComplaints(complaints) {
     }
 }
 
-document.getElementById("complaintForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+const complaintForm = document.getElementById("complaintForm");
+if (complaintForm) {
+    complaintForm.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    const schoolName = document.getElementById("schoolName").value.trim();
-    const village = document.getElementById("villageName").value.trim();
-    const district = document.getElementById("districtName").value.trim();
-    const issue = document.getElementById("issue").value.trim();
-    const contact = document.getElementById("contactInfo").value.trim();
-    const isAnonymous = document.getElementById("anonymousCheck").checked;
+        const schoolName = document.getElementById("schoolName").value.trim();
+        const village = document.getElementById("villageName").value.trim();
+        const district = document.getElementById("districtName").value.trim();
+        const issue = document.getElementById("issue").value.trim();
+        const contact = document.getElementById("contactInfo").value.trim();
+        const isAnonymous = document.getElementById("anonymousCheck").checked;
 
-    // Selected facilities
-    const checkedBoxes = document.querySelectorAll("input[name='facility']:checked");
-    const facilities = Array.from(checkedBoxes).map(cb => cb.value);
+        const checkedBoxes = document.querySelectorAll("input[name='facility']:checked");
+        const facilities = Array.from(checkedBoxes).map(cb => cb.value);
 
-    if (facilities.length === 0) {
-        alert("Please select at least one missing or broken facility.");
-        return;
-    }
+        if (facilities.length === 0) {
+            alert("Please select at least one missing or broken facility.");
+            return;
+        }
 
-    // Generate Complaint Reference ID
-    const randomNum = Math.floor(1000 + Math.random() * 9000);
-    const complaintId = `TN-EDU-2026-${randomNum}`;
-    const submitDate = new Date().toLocaleDateString("en-IN", {
-        day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const complaintId = `TN-EDU-2026-${randomNum}`;
+        const submitDate = new Date().toLocaleDateString("en-IN", {
+            day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+        });
+
+        const newComplaint = {
+            id: complaintId,
+            date: submitDate,
+            schoolName,
+            village,
+            district,
+            facilities,
+            issue,
+            photoData: currentPhotoBase64,
+            photoName: currentPhotoName,
+            contact: isAnonymous ? "Anonymous" : (contact || "Not provided"),
+            isAnonymous,
+            status: "Received",
+            statusStep: 1
+        };
+
+        const complaints = getStoredComplaints();
+        complaints.unshift(newComplaint);
+        saveStoredComplaints(complaints);
+
+        const resultBox = document.getElementById("result");
+        const lang = document.getElementById("language") ? document.getElementById("language").value : "en";
+
+        let successTitle = "✅ Complaint Successfully Submitted to Official Portal!";
+        let idLabel = "Your Official Complaint Reference ID:";
+        let trackHint = "Please save this ID to track inspection & resolution progress.";
+
+        if (lang === "ta") {
+            successTitle = "✅ புகார் வெற்றிகரமாக கல்வித்துறையில் பதிவு செய்யப்பட்டது!";
+            idLabel = "உங்கள் அதிகாரப்பூர்வ புகார் குறிப்பு எண்:";
+            trackHint = "இந்த எண்ணைக் குறித்து வைத்துக்கொண்டு உங்கள் புகாரின் நிலையை கண்காணிக்கலாம்.";
+        } else if (lang === "hi") {
+            successTitle = "✅ शिकायत शिक्षा विभाग के आधिकारिक पोर्टल पर दर्ज हो गई है!";
+            idLabel = "आपकी आधिकारिक शिकायत संदर्भ संख्या:";
+            trackHint = "निरीक्षण व समाधान की स्थिति देखने के लिए इस नंबर को सुरक्षित रखें।";
+        }
+
+        resultBox.innerHTML = `
+            <h3 class="result-success-title">${successTitle}</h3>
+            <p><strong>${idLabel}</strong></p>
+            <div class="complaint-id-badge">${complaintId}</div>
+            <p style="color:#004d40; font-weight:600;">${trackHint}</p>
+
+            <div style="background:#f9f9f9; padding:1rem; border-radius:6px; margin-top:1rem; border:1px solid #e0e0e0; text-align:left;">
+                <p><strong>🏫 School:</strong> ${escapeHtml(schoolName)}, ${escapeHtml(village)}, ${escapeHtml(district)}</p>
+                <p><strong>⚠️ Missing Facilities:</strong> ${facilities.join(", ")}</p>
+                <p><strong>📝 Issue:</strong> ${escapeHtml(issue)}</p>
+                <p><strong>🔒 Identity:</strong> ${isAnonymous ? "Anonymous (Protected)" : (contact || "Citizen")}</p>
+                ${currentPhotoBase64 ? `
+                    <p><strong>📸 Photo Proof Attached:</strong></p>
+                    <img src="${currentPhotoBase64}" class="result-photo-thumb" alt="Uploaded Proof" />
+                ` : `<p><em>No photo attached.</em></p>`}
+            </div>
+
+            <div style="margin-top:1.2rem;">
+                <a href="track.html?id=${encodeURIComponent(complaintId)}" class="btn btn-secondary">
+                    🔍 Track This Complaint on Status Page &rarr;
+                </a>
+            </div>
+        `;
+
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: "smooth" });
+
+        this.reset();
+        removePhoto();
     });
+}
 
-    const newComplaint = {
-        id: complaintId,
-        date: submitDate,
-        schoolName,
-        village,
-        district,
-        facilities,
-        issue,
-        photoData: currentPhotoBase64,
-        photoName: currentPhotoName,
-        contact: isAnonymous ? "Anonymous" : (contact || "Not provided"),
-        isAnonymous,
-        status: "Received",
-        statusStep: 1 // 1 = Received, 2 = In Progress, 3 = Resolved
-    };
-
-    const complaints = getStoredComplaints();
-    complaints.unshift(newComplaint);
-    saveStoredComplaints(complaints);
-
-    // Render result card
-    const resultBox = document.getElementById("result");
-    const lang = document.getElementById("language").value;
-
-    let successTitle = "✅ Complaint Successfully Submitted to Official Portal!";
-    let idLabel = "Your Official Complaint Reference ID:";
-    let trackHint = "Please save this ID to track inspection & resolution progress.";
-
-    if (lang === "ta") {
-        successTitle = "✅ புகார் வெற்றிகரமாக கல்வித்துறையில் பதிவு செய்யப்பட்டது!";
-        idLabel = "உங்கள் அதிகாரப்பூர்வ புகார் குறிப்பு எண்:";
-        trackHint = "இந்த எண்ணைக் குறித்து வைத்துக்கொண்டு உங்கள் புகாரின் நிலையை கண்காணிக்கலாம்.";
-    } else if (lang === "hi") {
-        successTitle = "✅ शिकायत शिक्षा विभाग के आधिकारिक पोर्टल पर दर्ज हो गई है!";
-        idLabel = "आपकी आधिकारिक शिकायत संदर्भ संख्या:";
-        trackHint = "निरीक्षण व समाधान की स्थिति देखने के लिए इस नंबर को सुरक्षित रखें।";
-    }
-
-    resultBox.innerHTML = `
-        <h3 class="result-success-title">${successTitle}</h3>
-        <p><strong>${idLabel}</strong></p>
-        <div class="complaint-id-badge">${complaintId}</div>
-        <p style="color:#004d40; font-weight:600;">${trackHint}</p>
-
-        <div style="background:#f9f9f9; padding:1rem; border-radius:6px; margin-top:1rem; border:1px solid #e0e0e0; text-align:left;">
-            <p><strong>🏫 School:</strong> ${escapeHtml(schoolName)}, ${escapeHtml(village)}, ${escapeHtml(district)}</p>
-            <p><strong>⚠️ Missing Facilities:</strong> ${facilities.join(", ")}</p>
-            <p><strong>📝 Issue:</strong> ${escapeHtml(issue)}</p>
-            <p><strong>🔒 Identity:</strong> ${isAnonymous ? "Anonymous (Protected)" : (contact || "Citizen")}</p>
-            ${currentPhotoBase64 ? `
-                <p><strong>📸 Photo Proof Attached:</strong></p>
-                <img src="${currentPhotoBase64}" class="result-photo-thumb" alt="Uploaded Proof" />
-            ` : `<p><em>No photo attached.</em></p>`}
-        </div>
-
-        <div style="margin-top:1.2rem;">
-            <button type="button" class="btn btn-secondary" onclick="showTrackWithId('${complaintId}')">
-                🔍 Track This Complaint Now
-            </button>
-        </div>
-    `;
-
-    resultBox.style.display = "block";
-    resultBox.scrollIntoView({ behavior: "smooth" });
-
-    // Reset Form
-    this.reset();
-    removePhoto();
-});
-
-// Helper: Escape HTML
 function escapeHtml(text) {
     if (!text) return "";
     return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-// Track shortcut
-function showTrackWithId(id) {
-    showSection("track");
-    const trackInput = document.getElementById("trackInput");
-    trackInput.value = id;
-    trackComplaint();
-}
-
 // ---- Track Complaint Function ----
 function trackComplaint() {
     const trackInput = document.getElementById("trackInput");
+    if (!trackInput) return;
+
     const query = trackInput.value.trim().toUpperCase();
     const trackResult = document.getElementById("trackResult");
-    const lang = document.getElementById("language").value;
+    const lang = document.getElementById("language") ? document.getElementById("language").value : "en";
 
     if (!query) {
         alert("Please enter a complaint reference number.");
@@ -578,7 +535,6 @@ function trackComplaint() {
 
     let complaintData = found;
 
-    // If not found in local storage, generate a realistic sample based on query
     if (!complaintData) {
         complaintData = {
             id: query,
@@ -662,7 +618,7 @@ function trackComplaint() {
 
 // ---- Initialization ----
 document.addEventListener("DOMContentLoaded", () => {
-    // Restore saved language preference or default to English
+    // Restore language preference
     const savedLang = localStorage.getItem("preferred_lang") || "en";
     const langSelect = document.getElementById("language");
     if (langSelect) {
@@ -670,6 +626,14 @@ document.addEventListener("DOMContentLoaded", () => {
         setLanguage(savedLang);
     }
 
-    // Show home section by default
-    showSection("home");
+    // Auto-fill tracking ID from URL parameter if present on track.html
+    const urlParams = new URLSearchParams(window.location.search);
+    const trackingIdParam = urlParams.get("id");
+    if (trackingIdParam) {
+        const trackInput = document.getElementById("trackInput");
+        if (trackInput) {
+            trackInput.value = trackingIdParam;
+            trackComplaint();
+        }
+    }
 });

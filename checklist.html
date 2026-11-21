@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facility Checklist - Village School Grievance Portal | SDG 4</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <div class="header-brand">
+            <div class="sdg-badge">SDG 4 · QUALITY EDUCATION</div>
+            <h1 data-key="siteTitle">Village School Grievance Portal</h1>
+            <p class="tagline" data-key="siteTagline">Direct Government Reporting for Rural Schools</p>
+        </div>
+        <div class="header-controls">
+            <div class="lang-select">
+                <label for="language" data-key="langLabel">Language / மொழி / भाषा:</label>
+                <select id="language" onchange="setLanguage(this.value)">
+                    <option value="en" selected>English</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" data-key="navHome">Home</a></li>
+            <li><a href="checklist.html" class="active" data-key="navChecklist">Facility Checklist</a></li>
+            <li><a href="complaint.html" data-key="navComplaint">File Complaint</a></li>
+            <li><a href="track.html" data-key="navTrack">Track Status</a></li>
+            <li><a href="about.html" data-key="navAbout">About Portal</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- FACILITY CHECKLIST PAGE -->
+        <section id="checklist">
+            <h2 data-key="checklistTitle">Mandatory School Facilities Checklist</h2>
+            <p class="section-intro" data-key="checklistIntro">According to RTE and SDG 4 standards, every school must provide these 8 basic facilities. If any are missing, report immediately.</p>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <span class="facility-icon">🏫</span>
+                    <div>
+                        <h4 data-key="fac1">Enough classrooms and teachers</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Adequate teacher-student ratio (1:30) and weatherproof classrooms.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">💧</span>
+                    <div>
+                        <h4 data-key="fac2">Clean drinking water</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Safe, tested potable drinking water tap or RO purification.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🚻</span>
+                    <div>
+                        <h4 data-key="fac3">Separate toilets for girls and boys</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Functional, hygienic, and secure sanitation with running water.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">💡</span>
+                    <div>
+                        <h4 data-key="fac4">Electricity, desks and books</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Working lights, fans, benches, desks, and free textbook supply.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🧱</span>
+                    <div>
+                        <h4 data-key="fac5">Safe building and boundary wall</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Structural safety certificate, non-leaking roofs, secure gates.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">⚽</span>
+                    <div>
+                        <h4 data-key="fac6">Playground & sports equipment</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Open recreational ground and basic physical education gear.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">♿</span>
+                    <div>
+                        <h4 data-key="fac7">Access for children with disabilities</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Barrier-free access ramps, handrails, and accessible toilets.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🍲</span>
+                    <div>
+                        <h4 data-key="fac8">Mid-day meal programme</h4>
+                        <p style="margin:0.2rem 0 0 0; font-size:0.85rem; color:#666;">Hygienic kitchen, nutritious hot meal served daily on time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <p data-key="ctaChecklist">Found a school missing one or more of these?</p>
+                <a href="complaint.html" class="btn btn-primary" data-key="btnGoReport">Go to Complaint Form &rarr;</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Education Department · Citizen Grievance Redressal Portal · SDG 4 Quality Education</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
