@@ -50,9 +50,9 @@ const translations = {
         missingFacLabel: "Missing or Broken Facilities (Tick all that apply) *",
         issueLabel: "Short Description of the Problem *",
         voiceBtnText: "Voice Record",
-        photoLabel: "📸 Photo as Proof (Optional but Highly Recommended)",
-        photoHint: "Take a photo of the broken facility or select an image from your phone/computer.",
-        dropzoneText: "Click or Tap here to Take Photo / Upload Image",
+        photoLabel: "📸 Photo as Proof (Mandatory *)",
+        photoHint: "Photo proof of the broken or missing facility is mandatory to ensure immediate government inspection.",
+        dropzoneText: "Click or Tap here to Take Photo / Upload Image (Mandatory *)",
         previewLabel: "Attached Photo Proof:",
         btnRemovePhoto: "✖ Remove Photo",
         contactPhoneLabel: "Contact Phone / WhatsApp (Optional for status updates)",
@@ -119,9 +119,9 @@ const translations = {
         missingFacLabel: "இல்லாத அல்லது பழுதடைந்த வசதிகள் (பொருத்தமானவற்றைத் தேர்வு செய்க) *",
         issueLabel: "குறை பற்றிய சுருக்கமான விவரம் *",
         voiceBtnText: "குரல் பதிவு (Voice)",
-        photoLabel: "📸 புகைப்பட சான்று (விருப்பத்தேர்வு - விரைவான நடவடிக்கைக்கு சிறந்தது)",
-        photoHint: "பழுதடைந்த வசதியின் புகைப்படத்தை போனில் எடுத்து இணைக்கவும்.",
-        dropzoneText: "புகைப்படம் எடுக்க அல்லது பதிவேற்ற இங்கே தொடவும்",
+        photoLabel: "📸 புகைப்பட சான்று (கட்டாயம் *)",
+        photoHint: "பள்ளியின் பழுதடைந்த அல்லது இல்லாத வசதியின் புகைப்படத்தை கட்டாயமாக இணைக்க வேண்டும்.",
+        dropzoneText: "புகைப்படம் எடுக்க அல்லது பதிவேற்ற இங்கே தொடவும் (கட்டாயம் *)",
         previewLabel: "இணைக்கப்பட்ட புகைப்படச் சான்று:",
         btnRemovePhoto: "✖ புகைப்படத்தை நீக்கு",
         contactPhoneLabel: "தொடர்பு எண் / வாட்ஸ்அப் (தகவல் பெற - விருப்பத்தேர்வு)",
@@ -188,9 +188,9 @@ const translations = {
         missingFacLabel: "अनुपलब्ध या टूटी हुई सुविधाएं (सभी लागू चुनें) *",
         issueLabel: "समस्या का विवरण *",
         voiceBtnText: "बोलकर लिखें (Voice)",
-        photoLabel: "📸 फोटो प्रमाण (वैकल्पिक परंतु त्वरित कार्रवाई हेतु अनुशंसित)",
-        photoHint: "टूटी या खराब सुविधा की फोटो अपने फोन से खींचें या अपलोड करें।",
-        dropzoneText: "फोटो खींचने या अपलोड करने के लिए यहाँ टैप करें",
+        photoLabel: "📸 फोटो प्रमाण (अनिवार्य *)",
+        photoHint: "सरकारी कार्रवाई सुनिश्चित करने के लिए स्कूल की स्थिति का फोटो प्रमाण अनिवार्य है।",
+        dropzoneText: "फोटो खींचने या अपलोड करने के लिए यहाँ टैप करें (अनिवार्य *)",
         previewLabel: "संलग्न फोटो प्रमाण:",
         btnRemovePhoto: "✖ फोटो हटाएं",
         contactPhoneLabel: "संपर्क मोबाइल / व्हाट्सएप (अपडेट के लिए - वैकल्पिक)",
@@ -282,6 +282,12 @@ function handlePhotoSelect(input) {
         if (previewImg) previewImg.src = currentPhotoBase64;
         if (filenameText) filenameText.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
         if (previewContainer) previewContainer.style.display = "block";
+
+        // Clear any previous error
+        const photoError = document.getElementById("photoError");
+        if (photoError) photoError.style.display = "none";
+        const photoGroup = document.getElementById("photoGroup");
+        if (photoGroup) photoGroup.style.borderColor = "#00695c";
     };
     reader.readAsDataURL(file);
 }
@@ -433,6 +439,30 @@ if (complaintForm) {
 
         if (facilities.length === 0) {
             alert("Please select at least one missing or broken facility.");
+            return;
+        }
+
+        // Mandatory Photo Check
+        if (!currentPhotoBase64) {
+            const lang = document.getElementById("language") ? document.getElementById("language").value : "en";
+            let photoAlert = "⚠️ Photo proof is mandatory! Please upload or take a photo of the school facility before submitting.";
+            if (lang === "ta") {
+                photoAlert = "⚠️ புகைப்பட சான்று கட்டாயமாகும்! தயவுசெய்து பள்ளியின் பழுதடைந்த அல்லது இல்லாத வசதியின் புகைப்படத்தை இணைக்கவும்.";
+            } else if (lang === "hi") {
+                photoAlert = "⚠️ फोटो प्रमाण अनिवार्य है! कृपया शिकायत दर्ज करने से पहले स्कूल की सुविधा का फोटो अपलोड करें।";
+            }
+
+            const photoError = document.getElementById("photoError");
+            if (photoError) {
+                photoError.textContent = photoAlert;
+                photoError.style.display = "block";
+            }
+            const photoGroup = document.getElementById("photoGroup");
+            if (photoGroup) {
+                photoGroup.style.border = "2px dashed #d32f2f";
+                photoGroup.scrollIntoView({ behavior: "smooth" });
+            }
+            alert(photoAlert);
             return;
         }
 

@@ -88,22 +88,24 @@
                     <p id="voiceStatus" class="voice-status"></p>
                 </div>
 
-                <!-- PHOTO PROOF UPLOAD -->
-                <div class="form-group photo-upload-group">
-                    <label for="photoInput" data-key="photoLabel">📸 Photo as Proof (Optional but Highly Recommended)</label>
-                    <p class="field-hint" data-key="photoHint">Take a photo of the broken facility or select an image from your phone/computer.</p>
+                <!-- PHOTO PROOF UPLOAD (MANDATORY) -->
+                <div class="form-group photo-upload-group" id="photoGroup">
+                    <label for="photoInput" data-key="photoLabel" style="color:#b71c1c;">📸 Photo as Proof (Mandatory *)</label>
+                    <p class="field-hint" data-key="photoHint">Photo proof of the broken or missing facility is mandatory to ensure immediate government inspection.</p>
                     
                     <div class="upload-dropzone" id="dropzone" onclick="document.getElementById('photoInput').click()">
                         <span class="upload-icon">📷</span>
-                        <p class="dropzone-text" data-key="dropzoneText">Click or Tap here to Take Photo / Upload Image</p>
-                        <span class="file-limits">Supports JPG, PNG, WEBP (Max 10MB)</span>
+                        <p class="dropzone-text" data-key="dropzoneText">Click or Tap here to Take Photo / Upload Image *</p>
+                        <span class="file-limits">Supports JPG, PNG, WEBP (Max 10MB) - Required to submit</span>
                         <input type="file" id="photoInput" name="photo" accept="image/*" capture="environment" style="display:none;" onchange="handlePhotoSelect(this)" />
                     </div>
+
+                    <p id="photoError" style="display:none; color:#d32f2f; font-weight:700; margin-top:0.5rem;"></p>
 
                     <!-- Photo Preview Box -->
                     <div id="photoPreviewContainer" class="photo-preview-container" style="display:none;">
                         <div class="preview-header">
-                            <span data-key="previewLabel">Attached Photo Proof:</span>
+                            <span data-key="previewLabel">Attached Photo Proof (Verified):</span>
                             <button type="button" class="btn-remove-photo" onclick="removePhoto()" data-key="btnRemovePhoto">✖ Remove Photo</button>
                         </div>
                         <img id="photoPreview" src="" alt="Proof Preview" />
