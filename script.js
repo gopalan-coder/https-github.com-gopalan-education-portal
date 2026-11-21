@@ -30,7 +30,7 @@ const translations = {
         step3Desc: "Get an official complaint number and follow action until resolution.",
 
         checklistTitle: "Mandatory School Facilities Checklist",
-        checklistIntro: "According to RTE and SDG 4 standards, every school must provide these 8 basic facilities. If any are missing, report immediately.",
+        checklistIntro: "According to RTE guidelines and national educational standards, every school must provide these 8 basic facilities. If any are missing, report immediately.",
         fac1: "Enough classrooms and teachers",
         fac2: "Clean drinking water",
         fac3: "Separate toilets for girls and boys",
@@ -64,7 +64,7 @@ const translations = {
         btnCheckStatus: "Check Status",
 
         aboutTitle: "About This Portal",
-        aboutDesc1: "This portal supports United Nations SDG 4 (Quality Education) by giving parents, teachers, and villagers a direct digital voice to ensure government schools have basic human facilities.",
+        aboutDesc1: "This portal supports quality education and citizen rights by giving parents, teachers, and villagers a direct digital voice to ensure government schools have basic human facilities.",
         aboutWhyTitle: "Why Direct Reporting?",
         aboutWhy1: "No middlemen: Complaints reach education directors without getting blocked or altered.",
         aboutWhy2: "Photographic proof: Visual evidence ensures authorities cannot ignore infrastructural negligence.",
@@ -99,7 +99,7 @@ const translations = {
         step3Desc: "அதிகாரப்பூர்வ புகார் எண்ணைப் பெற்று தீர்வு காணும் வரை கண்காணிக்கவும்.",
 
         checklistTitle: "பள்ளிகளுக்கு கட்டாய அடிப்படை வசதிகள் பட்டியல்",
-        checklistIntro: "SDG 4 மற்றும் கல்வி உரிமைச் சட்டப்படி ஒவ்வொரு பள்ளியிலும் இந்த 8 வசதிகள் கட்டாயம் இருக்க வேண்டும். இல்லையெனில் உடனே புகார் செய்யுங்கள்.",
+        checklistIntro: "கல்வி உரிமைச் சட்டம் மற்றும் அரசு வழிகாட்டுதலின்படி ஒவ்வொரு பள்ளியிலும் இந்த 8 வசதிகள் கட்டாயம் இருக்க வேண்டும். இல்லையெனில் உடனே புகார் செய்யுங்கள்.",
         fac1: "போதுமான வகுப்பறைகள் மற்றும் ஆசிரியர்கள்",
         fac2: "சுத்தமான குடிநீர் வசதி",
         fac3: "மாணவர், மாணவியருக்கு தனித்தனிக் கழிப்பறை",
@@ -133,7 +133,7 @@ const translations = {
         btnCheckStatus: "நிலையைச் சரிபார்க்க",
 
         aboutTitle: "இந்த தளம் பற்றி",
-        aboutDesc1: "ஐக்கிய நாடுகள் சபை SDG 4 (தரமான கல்வி) இலக்கின்படி, அரசுப் பள்ளிகளில் மனித உரிமைக்கான அடிப்படை வசதிகள் இருப்பதை உறுதி செய்ய பெற்றோர் மற்றும் கிராம மக்களுக்கு இத்தளம் குரல் கொடுக்கிறது.",
+        aboutDesc1: "அரசுப் பள்ளிகளில் குழந்தைகளின் கல்வி உரிமை மற்றும் மனித உரிமைக்கான அடிப்படை வசதிகள் இருப்பதை உறுதி செய்ய பெற்றோர் மற்றும் கிராம மக்களுக்கு இத்தளம் நேரடி குரல் கொடுக்கிறது.",
         aboutWhyTitle: "நேரடி புகாரின் முக்கியத்துவம்:",
         aboutWhy1: "இடைத்தரகர்கள் இல்லை: எந்த தடையுமின்றி கல்வி இயக்குநரகத்திற்கு புகார் நேரடியாகச் செல்லும்.",
         aboutWhy2: "புகைப்படச் சான்று: அதிகாரிகளால் அலட்சியப்படுத்த முடியாத வகையில் நேரடி சான்று.",
@@ -168,7 +168,7 @@ const translations = {
         step3Desc: "सरकारी शिकायत संख्या प्राप्त करें और समाधान तक प्रगति ट्रैक करें।",
 
         checklistTitle: "अनिवार्य स्कूल सुविधाएं चेकलिस्ट",
-        checklistIntro: "RTE और SDG 4 मानकों के अनुसार प्रत्येक स्कूल में ये 8 सुविधाएं अनिवार्य हैं। यदि कोई कमी है, तो तुरंत शिकायत करें।",
+        checklistIntro: "RTE और राष्ट्रीय शिक्षा मानकों के अनुसार प्रत्येक स्कूल में ये 8 सुविधाएं अनिवार्य हैं। यदि कोई कमी है, तो तुरंत शिकायत करें।",
         fac1: "पर्याप्त कक्षाएँ और योग्य शिक्षक",
         fac2: "स्वच्छ पीने का पानी",
         fac3: "छात्र और छात्राओं के लिए अलग शौचालय",
@@ -202,7 +202,7 @@ const translations = {
         btnCheckStatus: "स्थिति देखें",
 
         aboutTitle: "इस पोर्टल के बारे में",
-        aboutDesc1: "यह पोर्टल संयुक्त राष्ट्र SDG 4 (गुणवत्तापूर्ण शिक्षा) का समर्थन करता है ताकि सरकारी स्कूलों में बुनियादी मानवीय सुविधाएं सुनिश्चित हो सकें।",
+        aboutDesc1: "यह पोर्टल सरकारी स्कूलों में बच्चों के शिक्षा अधिकार और बुनियादी मानवीय सुविधाएं सुनिश्चित करने के लिए नागरिकों को सीधी आवाज़ प्रदान करता है।",
         aboutWhyTitle: "सीधी शिकायत क्यों महत्वपूर्ण है?",
         aboutWhy1: "कोई बिचौलिया नहीं: शिकायत सीधे शिक्षा निदेशकों तक पहुँचती है।",
         aboutWhy2: "फोटो प्रमाण: फोटो प्रमाण से अधिकारी लापरवाही को नज़रअंदाज़ नहीं कर सकते।",
@@ -571,7 +571,7 @@ function trackComplaint() {
     trackResult.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
             <div>
-                <span class="sdg-badge">OFFICIAL STATUS</span>
+                <span class="portal-badge">OFFICIAL STATUS</span>
                 <h3 style="margin:0.2rem 0; color:#004d40;">${complaintData.id}</h3>
                 <span style="font-size:0.85rem; color:#666;">Submitted: ${complaintData.date}</span>
             </div>
