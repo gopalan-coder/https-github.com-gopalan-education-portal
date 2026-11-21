@@ -732,9 +732,53 @@ textarea:focus {
 /* Footer */
 footer {
     text-align: center;
-    padding: 1.5rem 1rem;
+    padding: 1.8rem 1rem;
     background-color: #00251a;
     color: #80cbc4;
     font-size: 0.9rem;
     margin-top: 3rem;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-share-linkedin {
+    background-color: #0a66c2;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-share-linkedin:hover {
+    background-color: #004182;
+}
+
+.btn-repo-github {
+    background-color: #24292e;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-repo-github:hover {
+    background-color: #1b1f23;
 }
